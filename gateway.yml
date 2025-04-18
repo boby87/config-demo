@@ -1,20 +1,23 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: account-service
+          uri: lb://account
+          predicates:
+            - Path=/account/**
+        - id: customer
+          uri: lb://customer
+          predicates:
+            - Path=/customers/**
 
-cloud:
-  gateway:
-    routes:
-      - id: account-service
-        uri: lb://account
-        predicates:
-          - Path=/account/**
-      - id: customer
-        uri: lb://customer
-        predicates:
-          - Path=/customers/**
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
 
-    discovery:
-      locator:
-        enabled: false
-        lowerCaseServiceId: true
 eureka:
   client:
     serviceUrl:
