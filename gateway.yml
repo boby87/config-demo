@@ -7,7 +7,7 @@ spring:
           predicates:
             - Path=/api/account/**
         - id: customer-service
-          uri: lb://customer
+          uri: lb://customers
           predicates:
             - Path=api/customer/**
 
