@@ -1,16 +1,20 @@
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: account
-          uri: lb://account
-          predicates:
-            - Path=/api/account/**
-        - id: customer
-          uri: lb://customer
-          predicates:
-            - Path=api/customers/**
 
+cloud:
+  gateway:
+    routes:
+      - id: account-service
+        uri: lb://account
+        predicates:
+          - Path=/account/**
+      - id: customer
+        uri: lb://customer
+        predicates:
+          - Path=/customers/**
+
+    discovery:
+      locator:
+        enabled: false
+        lowerCaseServiceId: true
 eureka:
   client:
     serviceUrl:
@@ -21,3 +25,5 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: localhost
+
+
